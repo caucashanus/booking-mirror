@@ -75,7 +75,8 @@ export async function getEvents(location, date) {
     timeMax = undefined;
   }
 
-  const key = JSON.parse(await fs.readFile(keyPath, 'utf-8'));
+  const envVarName = location.toUpperCase() + '_KEY';
+  const key = JSON.parse(process.env[envVarName]);
   const jwt = new google.auth.JWT(
     key.client_email,
     undefined,
